@@ -1,6 +1,6 @@
 # Stack RNN
 Stack RNN is a project gathering the code from the paper 
-*Inferring Algorithmic Patterns with Stack-Augmented Recurrent Nets* by Armand Joulin and Tomas Mikolov.
+*Inferring Algorithmic Patterns with Stack-Augmented Recurrent Nets* by Armand Joulin and Tomas Mikolov ([pdf](http://arxiv.org/abs/1503.01007)).
 
 Most of the experiments shown in the paper can be reproduced by running the script `script_tasks.sh`.
 
@@ -44,6 +44,7 @@ For more help about the options:
 * Paper: http://arxiv.org/abs/1503.01007
 * Facebook page: https://www.facebook.com/fair
 * Contact: ajoulin@fb.com
+
 See the CONTRIBUTING file for how to help out.
 
 ## License
