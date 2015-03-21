@@ -9,7 +9,7 @@ We also include the code to reproduce the experiement on language modeling.
 ## Examples
 To run the code on a task:
 ```
-make toy
+> make toy
 > ./train_toy  -ntask 1 -nchar 2 -nhid 10 -nstack 1 -lr .1 -nmax 10 -depth 2 -bptt 50 -mod 1
 ```
 To run the code on language modeling:
