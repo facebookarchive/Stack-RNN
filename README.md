@@ -1,8 +1,12 @@
 # Stack RNN
 Stack RNN is a project gathering the code from the paper 
 *Inferring Algorithmic Patterns with Stack-Augmented Recurrent Nets* by Armand Joulin and Tomas Mikolov ([pdf](http://arxiv.org/abs/1503.01007)).
+In this research project, we focus on extending Recurrent Neural Networks (RNN) with a stack to allow them to learn sequences which require
+some form of persistent memory. 
 
 Most of the experiments shown in the paper can be reproduced by running the script `script_tasks.sh`.
+
+
 
 We also include the code to reproduce the experiement on language modeling.
 
@@ -12,12 +16,6 @@ To run the code on a task:
 > make toy
 > ./train_toy  -ntask 1 -nchar 2 -nhid 10 -nstack 1 -lr .1 -nmax 10 -depth 2 -bptt 50 -mod 1
 ```
-To run the code on language modeling:
-```
-> make word
-> ./train_word -nhid 40 -nstack 10 -mod 2 -bptt 50 -lr .1 -depth 1
-```
-Note that you need to put the Penn Trebank data in the data folder.
 
 ## Requirements
 Stack RNN works:
