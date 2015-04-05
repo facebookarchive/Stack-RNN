@@ -275,7 +275,6 @@ int main(int argc, char **argv){
     ne = 1; lo = 0;
     count = 0;
 
-    cur - nchar - 1;
     rnn.emptyStacks();
 
     // train on increasingly more challenging tasks:
