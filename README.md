@@ -6,10 +6,6 @@ some form of persistent memory.
 
 Most of the experiments shown in the paper can be reproduced by running the script `script_tasks.sh`.
 
-
-
-We also include the code to reproduce the experiement on language modeling.
-
 ## Examples
 To run the code on a task:
 ```
