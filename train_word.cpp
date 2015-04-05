@@ -308,35 +308,6 @@ int main(int argc, char **argv){
 
     lastent = loss;
   }
-
-  //rnn.copy(best_model);
-
-  printf("Results on the test sets\n");
-  f = fopen(filename_test.c_str(), "rb");
-  rnn.emptyStacks();
-  loss = 0;
-  cur=0;
-  count = 0;
-
-
-  while( 1 ){
-    ReadWord(snext, f);
-    if(feof(f)) break;
-    count++;
-
-    next = dic.getWordIdx(snext);
-
-    if(feof(f)) break;
-
-    rnn.forward(cur, next, ishard);
-    loss -= log10(rnn.eval(next))/log10(2);
-    if(count%1000==0)
-      printf("\r Alpha: %f\t TRAIN entropy:%.4f\t perplexity: %.4f\t TEST entropy:%.4f\t perplexity: %.4f   ", alpha, trainentr, trainperp,loss/count, pow(2, loss/count));
-    cur = next;
-  }
-
-  printf("\r Alpha: %f\t TRAIN entropy:%.4f\t perplexity: %.4f\t TEST entropy:%.4f\t perplexity: %.4f   \n", alpha, trainentr, trainperp,loss/count, pow(2, loss/count));
-  fclose(f);
 }
 
 
