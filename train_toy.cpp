@@ -486,7 +486,7 @@ int main(int argc, char **argv){
         if(save)print(rnn, f, cur, next);
 
         // begin of evaluation:
-        if(    (ntask == 1 && cur == 0 && next != 0)
+        if( (ntask == 1 && cur == 0 && next != 0)
             || (ntask == 2 && cur == 0 && next!= 0)
             || (ntask == 3 && cur == nchar -2 && next == nchar - 1)
             || (ntask == 4 && cur == 0)
