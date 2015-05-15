@@ -76,23 +76,67 @@ namespace rnn {
     return p;
   }
 
-  // a^nb^mc^n -> to see if the noop operation is working
+  // a^nb^mc^nd^m
   std::string task6(const my_int nmax, const my_int nmin, my_int nchar){
+    if(nchar != 4) exit(-1);
     my_int n = (rand() % (nmax-nmin)) + nmin ;
     my_int m = (rand() % (n-1)) + 1 ;
     n = n - m;
-    std::string p( n + m  + n, 'a');
+    std::string p( 2 * n + 2 * m, 'a');
     for(my_int i = n  ; i < n + m; i++)
       p[i] = 'b';
-    for(my_int i = n + m   ; i < p.size(); i++)
+    for(my_int i = n + m   ; i < 2 * n + m ; i++)
       p[i] = 'c';
+    for(my_int i = 2 * n + m   ; i < p.size(); i++)
+      p[i] = 'd';
+    return p;
+  }
+
+  std::string generate_addition(const my_int nmax, const my_int nmin, my_int base, my_int type = -1){
+    if(base < 2) exit(-1);
+
+    my_int i0 = (type==1)? 0 : 1;
+    my_int ln = (rand() % (nmax-nmin)) + nmin;
+
+    std::string n = std::string(ln, '1'+ (rand() % (base-1)));
+    if(ln == 0) {n = "0"; ln = 1;}
+    for(my_int i = i0; i < ln; i++)
+      n[i] = '0' + (rand() % base);
+    my_int lm = (rand() % (nmax-nmin)) + nmin;
+    std::string m = std::string(lm, '1'+ (rand() % (base-1)));
+    if(lm == 0) {m = "0"; lm = 1;}
+    for(my_int i = i0; i < lm; i++)
+      m[i] = '0' + (rand() % base);
+
+    if(type == 1){
+      while( n.size() > 1 && n[0] == '0'){
+        n.erase(0,1);
+      }
+      while( m.size() > 1 && m[0] == '0'){
+        m.erase(0,1);
+      }
+    }
+
+    std::string p = n;p += "+";p += m;p += "=";
+    my_int carry = 0;
+    my_int in = n.size() -1, im = m.size() -1;
+    while ( in >= 0 || im >= 0 || carry > 0){
+      my_int num = carry;
+      if( in >= 0) num += n[in] - '0';
+      if( im >= 0) num += m[im] - '0';
+      p += '0' + (num % base);
+      carry = num /base;
+      in--; im--;
+    }
+    p+=".";
+   // std::cout<<std::endl<<ln<<" "<<lm<<" "<<n<<" "<<m<<" "<<p<<std::endl;
     return p;
   }
 
   std::string generate_next_sequence(const my_int nmax, const my_int nmin, my_int nchar, my_int nrep, my_int ntask){
 
-    if(ntask == 1)
-      return task1(nmax, nmin, nchar);
+    if(ntask == 2)
+      return task2(nmax, nmin, nchar, nrep);
     if(ntask == 3){
       return task3(nmax, nmin, 3);
     }
@@ -105,7 +149,7 @@ namespace rnn {
     if(ntask == 4){
       return task4(nmax, nmin, nchar);
     }
-    return task2(nmax, nmin, nchar, nrep);
+    return task1(nmax, nmin, nchar);
   }
 
 

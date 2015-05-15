@@ -220,6 +220,9 @@ int main(int argc, char **argv){
   string  logtestfilename = "data/log_test_" ;
   logtestfilename.append(buff);
 
+  sprintf(buff,"_nseq%d_nmax%d", nseq, nmaxmax);
+  testfilename.append(buff);
+
   if(save){
     cout<< "Model saved in: "<< modelname << endl;
     cout<< "Log file for training (for current epoch): "<<logfilename << endl;
@@ -284,7 +287,7 @@ int main(int argc, char **argv){
       if(save) fprintf(f,"begin sequence\n");
       spred += '_';  sgoal += '_';
       for(int s = 0; s < nstack; s++) sstacks[s] += '_';
-      if(nreset > 0 && iseq % nreset == 0 ) rnn.emptyStacks();
+      if(nreset == 1 || (nreset > 0 && iseq % nreset == 0 )) rnn.emptyStacks();
 
       for(int ip = 0; ip < p.size(); ip++){
         next = p[ip] - 'a';
@@ -354,13 +357,15 @@ int main(int argc, char **argv){
       spred += '_';  sgoal += '_';
       for(int s = 0; s < nstack; s++) sstacks[s] += '_';
 
+      if( nreset == 1) rnn.emptyStacks();
+
       if(save) fprintf(f,"begin sequence\n");
       for(int ip = 0; ip < p.size(); ip++){
         next = p[ip] - 'a';
 
         rnn.forward(cur, next, ishard);
 
-        if(ip == 0 && iseq == 0) rnn.emptyStacks();
+        //if(ip == 0 && iseq == 0) rnn.emptyStacks();
 
         if (ip == 0) {
           loss -= log(rnn.eval(next)) / log(10);
@@ -433,6 +438,7 @@ int main(int argc, char **argv){
     cout << " Sequence used at test time saved at: "<< buff << endl;
     fseq = fopen(buff,"w");
     fres = fopen(testfilename.c_str(),"w");
+    fprintf(fres,"0\t %f\n", 0, lo / ne);
   }
 
   int ntest = 200;
@@ -453,6 +459,7 @@ int main(int argc, char **argv){
 
     for(int iseq = 0; iseq < ntest; iseq++){
 
+      if(ntask >= 7) rnn.emptyStacks();
       p = generate_next_sequence(nmax, nmin, nchar, nrep, ntask);
       iseval = false;
 
@@ -462,7 +469,7 @@ int main(int argc, char **argv){
 
         rnn.forward(cur, next, ishard);
 
-        if(ip == 0 && iseq == 0) rnn.emptyStacks();
+        //if(ip == 0 && iseq == 0) rnn.emptyStacks();
 
         // begin of a sequence / end of evaluation:
         if (ip == 0) {
@@ -489,7 +496,8 @@ int main(int argc, char **argv){
         if( (ntask == 1 && cur == 0 && next != 0)
             || (ntask == 2 && cur == 0 && next!= 0)
             || (ntask == 3 && cur == nchar -2 && next == nchar - 1)
-            || (ntask == 4 && cur == 0)
+            || (ntask == 4 && next == 0)
+            || (ntask == 6 && cur == 1 && next == 2)
             || (ntask == 5 && cur == nchar -2 && next == nchar - 1) ){
           iseval = true;
           if(save)fprintf(f, "begin eval\n");
