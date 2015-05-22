@@ -443,7 +443,7 @@ int main(int argc, char **argv){
     cout << " Sequence used at test time saved at: "<< buff << endl;
     fseq = fopen(buff,"w");
     fres = fopen(testfilename.c_str(),"w");
-    fprintf(fres,"0\t %f\n", 0, lo / ne);
+    fprintf(fres,"validation:\t %f\n", lo / ne);
   }
 
   int ntest = 200;
