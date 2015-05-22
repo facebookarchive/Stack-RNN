@@ -4,7 +4,9 @@ Stack RNN is a project gathering the code from the paper
 In this research project, we focus on extending Recurrent Neural Networks (RNN) with a stack to allow them to learn sequences which require
 some form of persistent memory. 
 
-Most of the experiments shown in the paper can be reproduced by running the script `script_tasks.sh`.
+Examples are given in the script `script_tasks.sh`. The code is still under construction. 
+We are working on releasing the code for the list and for the binary addition. If you have any suggestion, please let us know (contacts below).
+
 
 ## Examples
 To run the code on a task:
