@@ -51,7 +51,7 @@ namespace rnn {
     return p;
   }
 
-  // memorization string a gnirts (see paper)
+  // memorization string (see paper)
   std::string task4(const my_int nmax, const my_int nmin, my_int nchar){
     my_int n = (rand() % (nmax-nmin)) + nmin ;
     std::string p( 2 * n + 1, 'a');
