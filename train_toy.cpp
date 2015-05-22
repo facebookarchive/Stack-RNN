@@ -311,9 +311,9 @@ int main(int argc, char **argv){
 
         spred += 'a' + rnn.pred(); sgoal += 'a' + next;
         for(int s = 0; s < nstack; s++) {
-          if(rnn._act[s][rnn._it_mem][pop] > 0.7) sstacks[s] += '0';
-          else if(rnn._act[s][rnn._it_mem][push] > 0.7) sstacks[s] += '1';
-          else if(isnoop && rnn._act[s][rnn._it_mem][noop] > 0.7) sstacks[s] += '2';
+          if(rnn._act[s][rnn._it_mem][pop] > 0.7) sstacks[s] += '-';
+          else if(rnn._act[s][rnn._it_mem][push] > 0.7) sstacks[s] += '+';
+          else if(isnoop && rnn._act[s][rnn._it_mem][noop] > 0.7) sstacks[s] += '|';
           else  sstacks[s] += 'X';
         }
         if (spred.size() > 30) spred.erase(spred.begin(), spred.end() - 30);
@@ -337,7 +337,8 @@ int main(int argc, char **argv){
     fprintf(stdout, "\r [train] lr: %.5f it=%7d nmax:%d  entropy: %.3f  goal: %s pred: %s ",
         lr, count, nmax,  lo / ne, sgoal.c_str(), spred.c_str());
     for(int s = 0; s < min(nstack,5); s++)
-      fprintf(stdout, "| stack[%d] = %s", s, sstacks[s].c_str());
+      fprintf(stdout, "| actions on stack[%d] = %s", s, sstacks[s].c_str());
+    fprintf(stdout," [ - = pop, + = push, | = no-op,  X = not determined yet  ]");
     fprintf(stdout, "\n");
 
     // evaluation on every sequences:
@@ -380,8 +381,9 @@ int main(int argc, char **argv){
 
         spred += 'a' + rnn.pred(); sgoal += 'a' + next;
         for(int s = 0; s < nstack; s++) {
-          if(rnn._act[s][rnn._it_mem][pop] > 0.7) sstacks[s] += '0';
-          else if(rnn._act[s][rnn._it_mem][push] > 0.7) sstacks[s] += '1';
+          if(rnn._act[s][rnn._it_mem][pop] > 0.7) sstacks[s] += '-';
+          else if(rnn._act[s][rnn._it_mem][push] > 0.7) sstacks[s] += '+';
+          else if(isnoop && rnn._act[s][rnn._it_mem][noop] > 0.7) sstacks[s] += '|';
           else  sstacks[s] += 'X';
         }
         if (spred.size() > 30) spred.erase(spred.begin(), spred.end() - 30);
@@ -403,6 +405,9 @@ int main(int argc, char **argv){
 
     fprintf(stdout, "\r [valid] lr: %.5f it=%7d nmax:%d  entropy: %.3f  goal: %s pred: %s ",
         lr, count, nmax,  lo / ne, sgoal.c_str(), spred.c_str());
+    for(int s = 0; s < min(nstack,5); s++)
+      fprintf(stdout, "| actions on stack[%d] = %s", s, sstacks[s].c_str());
+    fprintf(stdout," [ - = pop, + = push, | = no-op,  X = not determined yet ]");
     fprintf(stdout, "\n");
 
     if( e == 0 || lo / ne < last_ent){

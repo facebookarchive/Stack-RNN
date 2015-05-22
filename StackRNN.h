@@ -16,13 +16,10 @@
 #include "common.h"
 #include "Vec.h"
 #include "Linear.h"
-#include "Dic.h"
 #include "Nonlinearity.h"
 
 
 #define EMPTY_STACK_VALUE -1
-
-#define DEBUG 0
 
 namespace rnn
 {

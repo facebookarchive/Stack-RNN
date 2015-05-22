@@ -22,6 +22,11 @@
 
 namespace rnn {
 
+  /*
+    Used for language modeling experiments.
+
+  */
+
   struct Dic {
 
     private:
