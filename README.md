@@ -14,6 +14,11 @@ To run the code on a task:
 > make toy
 > ./train_toy  -ntask 1 -nchar 2 -nhid 10 -nstack 1 -lr .1 -nmax 10 -depth 2 -bptt 50 -mod 1
 ```
+To run the code on binary addition:
+```
+> make add
+> ./train_add 
+```
 
 ## Requirements
 Stack RNN works:
