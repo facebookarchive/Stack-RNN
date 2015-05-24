@@ -5,7 +5,7 @@ In this research project, we focus on extending Recurrent Neural Networks (RNN) 
 some form of persistent memory. 
 
 Examples are given in the script `script_tasks.sh`. The code is still under construction. 
-We are working on releasing the code for the list and for the binary addition. If you have any suggestion, please let us know (contacts below).
+We are working on releasing the code for the list RNN. If you have any suggestion, please let us know (contacts below).
 
 
 ## Examples

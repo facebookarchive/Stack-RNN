@@ -9,10 +9,13 @@
 CC = g++
 CFLAGS = -std=c++0x  -lm -O3 -march=native -Wall -funroll-loops -ffast-math
 
-all: toy
+all: toy add
 
 toy : train_toy.cpp
 	$(CC) $(CFLAGS) $(OPT_DEF) train_toy.cpp -o train_toy
 
+add : train_add.cpp
+	$(CC) $(CFLAGS) $(OPT_DEF) train_add.cpp -o train_add
+
 clean:
-	rm -f train_toy
+	rm train_toy train_add

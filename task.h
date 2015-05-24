@@ -92,7 +92,7 @@ namespace rnn {
     return p;
   }
 
-  std::string generate_addition(const my_int nmax, const my_int nmin, my_int base, my_int type = -1){
+  std::string generate_addition(const my_int nmax, const my_int nmin, my_int base){
     if(base < 2) exit(-1);
 
     my_int i0 = 1;
