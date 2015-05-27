@@ -21,12 +21,11 @@ To run the code on binary addition:
 ```
 
 ## Requirements
-Stack RNN works:
+Stack RNN works on:
 * Mac OS X
 * Linux
 
-It was not tested on Windows. 
-To compile the code a relatively recent version of g++ is required.
+It was not tested on Windows. To compile the code a relatively recent version of g++ is required.
 
 ## Building Stack RNN
 Run `make` to compile everything. 
@@ -38,7 +37,7 @@ For more help about the options:
 > make toy
 > ./train_toy --help
 ```
-
+Note that `train_add` can take the same options as `train_toy`.
 
 
 ## Join the Stack RNN community
