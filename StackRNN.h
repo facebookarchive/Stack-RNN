@@ -7,6 +7,8 @@
  *  of patent rights can be found in the PATENTS file in the same directory.
  *
  */
+#ifndef _STACK_RNN_
+#define _STACK_RNN_
 #include <iostream>
 #include <vector>
 #include <deque>
@@ -641,7 +643,7 @@ namespace rnn
 
 
 } // end namespace
-
+#endif
 
 
 
