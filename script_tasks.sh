@@ -27,9 +27,7 @@ make toy
 ./train_toy  -ntask 3 -nchar 3 -nhid 40 -nstack 10 -lr .1 -nmax 15 -depth 2 -bptt 50 -mod 1 -hard 
 
 # memorization (with smaller epochs i.e. nreset = 100 instead of 1000)
-./train_toy  -ntask 4 -nchar 3 -nhid 40 -nstack 10 -lr .1 -nmax 10 -depth 2 -bptt 50 -mod 1 -nreset 100
-# For simplicity, here is a example of memorization with 100 hidden units:
-./train_toy  -ntask 4 -nchar 3 -nhid 100 -nstack 10 -lr .1 -nmax 20 -depth 2 -bptt 50 -mod 1 -nreset 100 -seed 4 
+./train_toy  -ntask 4 -nchar 3 -nhid 100 -nstack 10 -lr .1 -nmax 20 -depth 2 -bptt 50 -mod 1 -nreset 100 
 # note that to reproduce the results in the paper, one needs to cycle over the seed and restart the ones which give
 # entropy above average.
 
@@ -69,6 +67,7 @@ make toy
 ./train_toy  -ntask 3 -nchar 3 -nhid 10 -nstack 1 -lr .1 -nmax 20 -depth 2 -bptt 50 -mod 1
 ./train_toy  -ntask 3 -nchar 3 -nhid 10 -nstack 1 -lr .1 -nmax 10 -depth 2 -bptt 50 -mod 1 -hard 
 
+./train_toy  -ntask 4 -nchar 3 -nhid 40 -nstack 10 -lr .1 -nmax 10 -depth 2 -bptt 50 -mod 1 -nreset 100
 #example with depth 1:
 ./train_toy  -ntask 1 -nchar 2 -nhid 20 -nstack 2 -lr .1 -nmax 20 -depth 1 -bptt 50 -mod 1 
 ./train_toy  -ntask 1 -nchar 2 -nhid 20 -nstack 2 -lr .1 -nmax 20 -depth 1 -bptt 50 -mod 1 -hard
