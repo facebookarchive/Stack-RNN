@@ -11,10 +11,10 @@ CFLAGS = -std=c++0x  -lm -O3 -march=native -Wall -funroll-loops -ffast-math
 
 all: toy add
 
-toy : train_toy.cpp
+toy : train_toy.cpp StackRNN.h task.h Vec.h Linear.h utils.h common.h Nonlinearity.h
 	$(CC) $(CFLAGS) $(OPT_DEF) train_toy.cpp -o train_toy
 
-add : train_add.cpp
+add : train_add.cpp StackRNN.h task.h Vec.h Linear.h utils.h common.h Nonlinearity.h
 	$(CC) $(CFLAGS) $(OPT_DEF) train_add.cpp -o train_add
 
 clean:
